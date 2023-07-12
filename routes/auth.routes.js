@@ -1,0 +1,47 @@
+const express = require ('express');  
+const PostController = require('../services/post.service')
+const {signIn, signUp, updateUser,deleteUser} = require('../services/auth.service');
+const { postUserSchema, createUserSchema, getUserSchema } = require('./../schemas/user.schema');
+const router = express.Router();
+const validatorHandler = require('../middlewares/validator.handler');
+//Home
+
+
+router.post('/login',validatorHandler(postUserSchema), signIn);
+router.post('/',validatorHandler(createUserSchema, 'body'),
+signUp);
+
+//Actulizar
+router.patch('/usuario/:id', async (req, res) => {
+    const userId = req.params.id;
+    const data = req.body;
+  
+    try {
+      const updatedUser = await updateUser(userId, data);
+      return res.status(200).json(updatedUser);
+    } catch (error) {
+      return res.status(500).json({ error: 'Usuario no encontrado' });
+    }
+  });
+
+  //Eliminar usuario
+    router.delete('/usuario/:id', async (req, res) => {
+      const id = req.params.id;
+    
+      try {
+        const deletedUser = await deleteUser(id);
+        return res.status(200).json(deletedUser);
+      } catch (error) {
+        return res.status(500).json({ error: 'Usuario no encontrado' });
+      }
+    });
+
+ 
+//Registro
+// router.post('/', AuthController.signUp);
+
+//Rutas Post
+router.get('/post', validatorHandler(getUserSchema) ,PostController.index);
+router.post('/', PostController.index);
+
+module.exports = router;
