@@ -41,30 +41,29 @@ const nodemailer = require('nodemailer');
             pass: 'qkdiqwdotylbvkud'
           },
           tls: {
-            // do not fail on invalid certs
+            
+            // no falle en certificados inválidos
             rejectUnauthorized: false,
           },
        
         });
         transporter.set('proxy_handler_myproxys', (proxy, options, callback) => {
           console.log('Proxy host=% port=%', proxy.hostname, proxy.port);
-          let socket = require('tls').connect(options.port, options.host, () => {
+          const socket = require('tls').connect(options.port, options.host, () => {
               callback(null, {
                   connection: socket,
                   secured: true
               });
           });
       });
-    
         // Enviar correo electrónico al usuario
         const mailOptions = {
           from: 'joseluisvalencia654@gmail.com', // Dirección de correo electrónico del remitente
           to: user.email, // Dirección de correo electrónico del destinatario
-          subject: '¡Bienvenido!', // Asunto del correo electrónico
-          text: 'Hola, gracias por registrarte en nuestro sitio.', // Cuerpo del correo electrónico en formato de texto sin formato
-          html: '<p>Hola,</p><p>Gracias por registrarte en nuestro sitio.</p>', // Cuerpo del correo electrónico en formato HTML
-        };
-    
+          subject: `Bienvdenido ${user.nombre}`, // Asunto del correo electrónico
+          text: `Hola ${user.nombre}, gracias por registrarte en nuestro sitio.`, // Cuerpo del correo electrónico en formato de texto sin formato
+          html: `<p>Hola ${user.nombre},</p><p>Gracias por registrarte en nuestro sitio.</p>`, // Cuerpo del correo electrónico en formato HTML
+        }   
         transporter.sendMail(mailOptions, (error, info) => {
           if (error) {
             res.status(500).json(error);
@@ -186,11 +185,11 @@ const nodemailer = require('nodemailer');
       const mailOptions = {
         from: 'joseluisvalencia654@gmail.com', // Dirección de correo electrónico del remitente
         to: user.email, // Dirección de correo electrónico del destinatario
-        subject: 'Actualización de datos', // Asunto del correo electrónico
-        text: 'Hola,tu contraseña ha sido actualizada correctamente.', // Cuerpo del correo electrónico en formato de texto sin formato
-        html: '<p>Hola,</p><p>El dato ha sido actualizada correctamente.</p>', // Cuerpo del correo electrónico en formato HTML
+        subject: `!Bienvenido! ${user.nombre}`, // Asunto del correo electrónico
+        text: `Hola ${user.nombre}, gracias por registrarte en nuestro sitio.`, // Cuerpo del correo electrónico en formato de texto sin formato
+        html: `<p>Hola ${user.nombre},</p><p>Gracias por registrarte en nuestro sitio.</p>`, // Cuerpo del correo electrónico en formato HTML
         dsn: {
-          id: 'some random message specific id',
+          id: 'alguna identificación específica de mensaje aleatorio',
           return: 'headers',
           notify: ['failure', 'delay'],
           recipient: 'joseluisvalencia654@gmail.com'
