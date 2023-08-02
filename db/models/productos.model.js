@@ -1,4 +1,4 @@
-const {Model, DataTypes, Sequelize} = require('sequelize'); 
+const {Model, DataTypes, Sequelize} = require('sequelize');
 
 // const {CATEGORIA_TABLE} = require('./categoria.model');
 // const { ORDEN_TABLE } = require('./orden.model');
@@ -74,9 +74,9 @@ const ProductoSchema = {
 
     class Product extends Model {
 
-     static associate(models) {
+     static associate() {
         // this.belongsTo(models.Category, {
-        //  as:'categoria'}); 
+        //  as:'categoria'});
     }
         static config(sequelize){
         return{

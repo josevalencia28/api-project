@@ -4,7 +4,7 @@ const{Model,DataTypes,Sequelize} = require('sequelize');
 
 const CATEGORIA_TABLE= 'categoria';
 
-const CategoriaSchema = { 
+const CategoriaSchema = {
     id: {
     allowNull:false,
     autoIncrement:true,
@@ -27,7 +27,7 @@ const CategoriaSchema = {
 
 class Category extends Model {
 
-	static associate(models) {
+	static associate() {
 	// this.hasMany(models.Product, {
   //   as:'products',
 	// foreignKey:'categoryId'

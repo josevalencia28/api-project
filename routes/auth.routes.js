@@ -1,7 +1,6 @@
-const express = require ('express');  
-const PostController = require('../services/post.service')
+const express = require ('express');
 const {signIn, signUp, updateUser,deleteUser} = require('../services/auth.service');
-const { postUserSchema, createUserSchema, getUserSchema } = require('./../schemas/user.schema');
+const { postUserSchema, createUserSchema,  } = require('./../schemas/user.schema');
 const router = express.Router();
 const validatorHandler = require('../middlewares/validator.handler');
 //Home
@@ -15,9 +14,9 @@ signUp);
 router.patch('/usuario/:id', async (req, res) => {
     const userId = req.params.id;
     const data = req.body;
-  
+
     try {
-      const updatedUser = await updateUser(userId, data);
+      const updatedUser = await updateUser(userId, data, { attributes: { exclude: ['password'] } });
       return res.status(200).json(updatedUser);
     } catch (error) {
       return res.status(500).json({ error: 'Usuario no encontrado' });
@@ -27,7 +26,7 @@ router.patch('/usuario/:id', async (req, res) => {
   //Eliminar usuario
     router.delete('/usuario/:id', async (req, res) => {
       const id = req.params.id;
-    
+
       try {
         const deletedUser = await deleteUser(id);
         return res.status(200).json(deletedUser);
@@ -36,12 +35,11 @@ router.patch('/usuario/:id', async (req, res) => {
       }
     });
 
- 
+
 //Registro
 // router.post('/', AuthController.signUp);
 
 //Rutas Post
-router.get('/post', validatorHandler(getUserSchema) ,PostController.index);
-router.post('/', PostController.index);
+
 
 module.exports = router;

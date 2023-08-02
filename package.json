@@ -32,6 +32,8 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "faker": "^5.5.3",
+    "fs": "^0.0.1-security",
+    "https": "^1.0.0",
     "joi": "^17.7.0",
     "joi-password": "^4.0.0",
     "jsonwebtoken": "^9.0.0",
@@ -40,7 +42,9 @@
     "pg-hstore": "^2.3.4",
     "pool": "^0.4.1",
     "sequelize": "^6.32.1",
-    "socks": "^2.7.1"
+    "socks": "^2.7.1",
+    "tls": "^0.0.1",
+    "twilio": "^4.14.1"
   },
   "engines": {
     "node": "14.x"

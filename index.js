@@ -1,6 +1,7 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-console */
 const express = require('express');
-//const cors = require('cors');
+const cors = require('cors');
 const routerApi = require('./routes');
 
 const { logErrors, errorHandler, boomErrorHandler,ormErrorHandler } = require('./middlewares/error.handler');
@@ -21,7 +22,7 @@ app.use(express.json());
 //   }
 // }
 
-// app.use(cors(options));
+ app.use(cors());
 
 app.get('/', (req, res) => {
   res.send('Hola mi server en express');

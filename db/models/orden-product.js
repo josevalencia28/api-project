@@ -53,8 +53,8 @@ const OrdenProductSchema = {
 
 class OrdenProduct extends Model {
 
-    static associate(models) {
-      
+    static associate() {
+
     }
 
     static config(sequelize) {

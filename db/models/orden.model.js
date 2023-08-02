@@ -35,17 +35,9 @@ const OrdenSchema = {
 
 class Orden extends Model {
 
-    static associate(models) {
-        this.belongsTo(models.Customer, {
-            as:'customers',
-            // foreignKey: 'ordenId'
-        });
-        this.belongsToMany(models.Product,{
-            as: 'items',
-            through: models.OrdenProduct,
-            foreignKey: 'ordenId',
-            otherKey: 'productId'
-        })
+    static associate() {
+
+
     }
 
     static config(sequelize) {

@@ -2,15 +2,13 @@ const express = require('express');
 const ProductsService = require('./../services/product.service');
 const validatorHandler = require('./../middlewares/validator.handler');
 const { createProductSchema, updateProductSchema, getProductSchema } = require('./../schemas/product.schema');
-
 const router = express.Router();
 const service = new ProductsService();
+//const authenticateToken = require('../middlewares/token.middelwares');
 
-router.get('/', 
-//validatorHandler(getProductSchema, 'params'),
-async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
-    const products = await service.find();
+    const products = await service.findByUserId(); // Modifica la función de búsqueda de productos para filtrar por el userId.
     res.json(products);
   } catch (error) {
     next(error);
@@ -29,7 +27,6 @@ router.get('/:id',
     }
   }
 );
-
 router.post('/',
   validatorHandler(createProductSchema, 'body'),
   async (req, res, next) => {

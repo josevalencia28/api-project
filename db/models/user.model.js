@@ -1,10 +1,11 @@
 const { Model, DataTypes, Sequelize} = require('sequelize');
 
+
 // const {POST_TABLE} = require('./post');
 
 const USER_TABLE = 'usuario';
 
-const UserSchema = {            
+const UserSchema = {
     id: {
         allowNull: false,
         autoIncrement: true,
@@ -25,7 +26,7 @@ const UserSchema = {
         allowNull:false,
         type:DataTypes.STRING,
         unique:true,
-       
+
     },
 
     telefono: {
@@ -55,21 +56,25 @@ const UserSchema = {
             }
         }
     },
-   
+
     createdAt: {
         allowNull: true,
         type: DataTypes.DATE,
-        field: 'created_at',    
+        field: 'created_at',
         defaultValue: Sequelize.NOW
+    },
+
+    updatedAt: {
+      allowNull: true,
+      type: DataTypes.DATE,
+      field: 'updated_at',
+      defaultValue: Sequelize.NOW
     }
 }
 
 class User extends Model {
-    static associate(models) {
-      this.hasMany(models.Post, {
-        as: 'posts',
-        foreignKey: 'userId'
-      });
+    static associate() {
+
     }
 
     static config(sequelize){

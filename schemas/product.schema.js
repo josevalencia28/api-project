@@ -20,11 +20,11 @@ const createProductSchema = Joi.object({
 });
 
 const updateProductSchema = Joi.object({
-  // codigo: codigo.required(),
-  // nombre: nombre.required(),
-  // precio: precio.required(),
-  // fabricado: fabricado.required(),
-  // fechaVencimiento: fechaVencimiento.required()
+  producto: producto.required(),
+  descripcion: descripcion.required(),
+  marca: marca.required(),
+  precio: precio.required(),
+   fabricado: fabricado.required(),
 });
 
 const getProductSchema = Joi.object({

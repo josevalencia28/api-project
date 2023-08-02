@@ -16,7 +16,7 @@ const createUserSchema = Joi.object({
   telefono: telefono.required(),
   email: email.required(),
   password: password.required(),
-  
+
 });
 
 const updateUserSchema = Joi.object({
@@ -38,6 +38,6 @@ const postUserSchema = Joi.object({
 
 })
 
-module.exports = { createUserSchema, updateUserSchema, getUserSchema, postUserSchema } 
+module.exports = { createUserSchema, updateUserSchema, getUserSchema, postUserSchema }
 
 
